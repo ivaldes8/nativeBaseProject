@@ -4,26 +4,15 @@ import {RootStackParamList} from './Common/types/Navigation';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Home from './screens/Home';
 import Profile from './screens/Profile';
-import {
-  COUNTER_SCREEN,
-  HOME_SCREEN,
-  PROFILE_SCREEN,
-} from './Common/constants/navigation';
-import Counter from './screens/Counter';
+import {HOME_SCREEN, PROFILE_SCREEN} from './Common/constants/navigation';
 
 const AppNavigator = () => {
   const RootStack = createNativeStackNavigator<RootStackParamList>();
-  const user = {name: 'Ivan', id: '1'};
   return (
     <NavigationContainer>
       <RootStack.Navigator initialRouteName={HOME_SCREEN}>
         <RootStack.Screen name={HOME_SCREEN} component={Home} />
-        <RootStack.Screen name={COUNTER_SCREEN} component={Counter} />
-        <RootStack.Screen
-          name={PROFILE_SCREEN}
-          component={Profile}
-          initialParams={{userId: user.id}}
-        />
+        <RootStack.Screen name={PROFILE_SCREEN} component={Profile} />
       </RootStack.Navigator>
     </NavigationContainer>
   );
