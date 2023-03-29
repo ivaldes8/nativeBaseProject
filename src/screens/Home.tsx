@@ -2,7 +2,11 @@ import {View, Text, Button} from 'react-native';
 import React from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {MainNavigationProps} from '../Common/types/Navigation';
-import {COUNTER_SCREEN, PROFILE_SCREEN} from '../Common/constants/navigation';
+import {
+  CHARACTERS_SCREEN,
+  COUNTER_SCREEN,
+  PROFILE_SCREEN,
+} from '../Common/constants/navigation';
 
 const Home = () => {
   const navigation = useNavigation<MainNavigationProps>();
@@ -21,6 +25,13 @@ const Home = () => {
           navigation.navigate(COUNTER_SCREEN);
         }}
         title="To Counter"
+        accessibilityLabel="Learn more about this purple button"
+      />
+      <Button
+        onPress={() => {
+          navigation.navigate(CHARACTERS_SCREEN);
+        }}
+        title="To Characters"
         accessibilityLabel="Learn more about this purple button"
       />
     </View>

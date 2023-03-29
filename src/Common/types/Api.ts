@@ -13,4 +13,6 @@ export type Character = {
   created: String;
 };
 
-export type CharacterList = Array<Character>;
+export type CharacterList = {
+  results: Array<Character>;
+};
