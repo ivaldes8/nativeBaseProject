@@ -1,41 +1,25 @@
-import {View, Text, Button} from 'react-native';
+import {Text, StyleSheet, SafeAreaView} from 'react-native';
 import React from 'react';
-import {useNavigation} from '@react-navigation/native';
-import {MainNavigationProps} from '../Common/types/Navigation';
-import {
-  CHARACTERS_SCREEN,
-  COUNTER_SCREEN,
-  PROFILE_SCREEN,
-} from '../Common/constants/navigation';
 
 const Home = () => {
-  const navigation = useNavigation<MainNavigationProps>();
   return (
-    <View>
-      <Text>Home</Text>
-      <Button
-        onPress={() => {
-          navigation.navigate(PROFILE_SCREEN, {userId: '2'});
-        }}
-        title="To Profile"
-        accessibilityLabel="Learn more about this purple button"
-      />
-      <Button
-        onPress={() => {
-          navigation.navigate(COUNTER_SCREEN);
-        }}
-        title="To Counter"
-        accessibilityLabel="Learn more about this purple button"
-      />
-      <Button
-        onPress={() => {
-          navigation.navigate(CHARACTERS_SCREEN);
-        }}
-        title="To Characters"
-        accessibilityLabel="Learn more about this purple button"
-      />
-    </View>
+    <SafeAreaView style={styles.container}>
+      <Text style={styles.homeText}>Welcome to Rick and Morty App</Text>
+    </SafeAreaView>
   );
 };
 
 export default Home;
+
+const styles = StyleSheet.create({
+  container: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flex: 1,
+  },
+  homeText: {
+    fontSize: 40,
+    fontWeight: 'bold',
+  },
+});

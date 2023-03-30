@@ -8,7 +8,7 @@ import {
   Button,
 } from 'react-native';
 import React, {useContext, useEffect} from 'react';
-import {useGetCharacterListQuery} from '../Store/Services/rickAndMortyApi';
+import {useGetCharacterListQuery} from '../Store/Reducers/rickAndMortyApi';
 import {LoadingContext} from '../Common/contexts/LoadingProvider';
 import {Character} from '../Common/types/Api';
 import {useNavigation} from '@react-navigation/native';

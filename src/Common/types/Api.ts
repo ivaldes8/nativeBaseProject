@@ -16,3 +16,8 @@ export type Character = {
 export type CharacterList = {
   results: Array<Character>;
 };
+
+export type User = {
+  name: string;
+  email: string;
+};

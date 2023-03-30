@@ -1,10 +1,9 @@
 import {NavigationProp} from '@react-navigation/native';
 
-export type RootStackParamList = {
+export type RootStackNavigation = {
+  Login: undefined;
   Home: undefined;
   Characters: undefined;
-  Profile: {userId: string};
-  Counter: undefined;
 };
 
-export type MainNavigationProps = NavigationProp<RootStackParamList>;
+export type MainNavigationProps = NavigationProp<RootStackNavigation>;

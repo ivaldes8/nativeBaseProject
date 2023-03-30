@@ -1,4 +1,4 @@
-import {rickAndMortyApi} from './Services/rickAndMortyApi';
+import {rickAndMortyApi} from './Reducers/rickAndMortyApi';
 import {configureStore, ThunkAction, Action} from '@reduxjs/toolkit';
 import counterReducer from './Reducers/counterSlice';
 
