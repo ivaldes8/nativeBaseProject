@@ -8,19 +8,24 @@ import {
   Button,
 } from 'react-native';
 import React, {useContext, useEffect} from 'react';
-import {useGetCharacterListQuery} from '../Store/Reducers/rickAndMortyApi';
-import {LoadingContext} from '../Common/contexts/LoadingProvider';
-import {Character} from '../Common/types/Api';
+import {useGetCharacterListQuery} from '../../Store/Reducers/rickAndMortyApi';
+import {LoadingContext} from '../../Common/contexts/LoadingProvider';
+import {Character, User} from '../../Common/types/Api';
 import {useNavigation} from '@react-navigation/native';
-import {HOME_SCREEN} from '../Common/constants/navigation';
-import {MainNavigationProps} from '../Common/types/Navigation';
+import {CHARACTER_EDIT_SCREEN} from '../../Common/constants/navigation';
+import {CharacterStackProps} from '../../Common/types/Navigation';
+import {useAppSelector} from '../../Store/hooks';
+import {selectUser} from '../../Store/Reducers/loginSlice';
 
 type ItemProps = {
   character: Character;
 };
 
 const RenderItem = ({character}: ItemProps) => {
-  const navigation = useNavigation<MainNavigationProps>();
+  const navigation = useNavigation<CharacterStackProps>();
+
+  const user: User = useAppSelector(selectUser);
+
   return (
     <View style={styles.item}>
       <Image
@@ -37,9 +42,13 @@ const RenderItem = ({character}: ItemProps) => {
       <View style={styles.itemButton}>
         <Button
           onPress={() => {
-            navigation.navigate(HOME_SCREEN);
+            navigation.navigate(CHARACTER_EDIT_SCREEN, {
+              id: character.id,
+            });
           }}
-          title="Home"
+          disabled={user && user.name === ''}
+          color="#f194ff"
+          title="Edit"
         />
       </View>
     </View>
@@ -69,6 +78,7 @@ const CharacterList = () => {
     <SafeAreaView>
       {!isLoading && data && data.results && (
         <FlatList
+          style={styles.flatList}
           data={data.results}
           renderItem={({item}) => {
             return <RenderItem character={item} />;
@@ -82,6 +92,9 @@ const CharacterList = () => {
 export default CharacterList;
 
 const styles = StyleSheet.create({
+  flatList: {
+    marginTop: 10,
+  },
   item: {
     margin: 10,
     padding: 10,

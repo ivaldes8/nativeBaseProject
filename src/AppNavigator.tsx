@@ -9,12 +9,12 @@ import {
   LOGOUT_SCREEN,
 } from './Common/constants/navigation';
 import Login from './screens/Login';
-import CharacterList from './screens/CharacterList';
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 import {useAppSelector} from './Store/hooks';
 import {selectUser} from './Store/Reducers/loginSlice';
 import Logout from './screens/Logout';
 import {User} from './Common/types/Api';
+import CharacterNavigator from './screens/Character/CharacterNavigator';
 
 const AppNavigator = () => {
   const RootTab = createMaterialBottomTabNavigator<RootStackNavigation>();
@@ -24,7 +24,10 @@ const AppNavigator = () => {
     <NavigationContainer>
       <RootTab.Navigator initialRouteName={user ? HOME_SCREEN : LOGIN_SCREEN}>
         <RootTab.Screen name={HOME_SCREEN} component={Home} />
-        <RootTab.Screen name={CHARACTERS_SCREEN} component={CharacterList} />
+        <RootTab.Screen
+          name={CHARACTERS_SCREEN}
+          component={CharacterNavigator}
+        />
         {user && user.name !== '' ? (
           <RootTab.Screen name={LOGOUT_SCREEN} component={Logout} />
         ) : (

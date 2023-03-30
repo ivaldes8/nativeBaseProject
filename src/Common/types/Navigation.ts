@@ -8,3 +8,10 @@ export type RootStackNavigation = {
 };
 
 export type MainNavigationProps = NavigationProp<RootStackNavigation>;
+
+export type CharacterStack = {
+  CharacterList: undefined;
+  CharacterEdit: {id: string | number};
+};
+
+export type CharacterStackProps = NavigationProp<CharacterStack>;
