@@ -15,6 +15,7 @@ import {selectUser} from './Store/Reducers/loginSlice';
 import Logout from './screens/Logout';
 import {User} from './Common/types/Api';
 import CharacterNavigator from './screens/Character/CharacterNavigator';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const AppNavigator = () => {
   const RootTab = createMaterialBottomTabNavigator<RootStackNavigation>();
@@ -23,15 +24,50 @@ const AppNavigator = () => {
   return (
     <NavigationContainer>
       <RootTab.Navigator initialRouteName={user ? HOME_SCREEN : LOGIN_SCREEN}>
-        <RootTab.Screen name={HOME_SCREEN} component={Home} />
+        <RootTab.Screen
+          name={HOME_SCREEN}
+          component={Home}
+          options={{
+            tabBarLabel: 'Home',
+            // eslint-disable-next-line react/no-unstable-nested-components
+            tabBarIcon: () => <MaterialCommunityIcons name="home" size={26} />,
+          }}
+        />
         <RootTab.Screen
           name={CHARACTERS_SCREEN}
           component={CharacterNavigator}
+          options={{
+            tabBarLabel: 'Characters',
+            // eslint-disable-next-line react/no-unstable-nested-components
+            tabBarIcon: () => (
+              <MaterialCommunityIcons name="penguin" size={26} />
+            ),
+          }}
         />
         {user && user.name !== '' ? (
-          <RootTab.Screen name={LOGOUT_SCREEN} component={Logout} />
+          <RootTab.Screen
+            name={LOGOUT_SCREEN}
+            component={Logout}
+            options={{
+              tabBarLabel: 'Logout',
+              // eslint-disable-next-line react/no-unstable-nested-components
+              tabBarIcon: () => (
+                <MaterialCommunityIcons name="logout-variant" size={26} />
+              ),
+            }}
+          />
         ) : (
-          <RootTab.Screen name={LOGIN_SCREEN} component={Login} />
+          <RootTab.Screen
+            name={LOGIN_SCREEN}
+            component={Login}
+            options={{
+              tabBarLabel: 'Login',
+              // eslint-disable-next-line react/no-unstable-nested-components
+              tabBarIcon: () => (
+                <MaterialCommunityIcons name="login-variant" size={26} />
+              ),
+            }}
+          />
         )}
       </RootTab.Navigator>
     </NavigationContainer>
